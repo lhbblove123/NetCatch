@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8"> <!-- 加上这行，告诉浏览器用UTF-8解析 -->
+</head>
+<body>
+  <h1>我的自动化测试平台</h1>
+  <button id="testBtn">点击测试前后端通信</button>
+  <script>
+    // 点击按钮时，给后端发请求
+    //在网页中找到testBtn按钮；给按钮添加点击事件，执行{}内的代码
+    document.getElementById('testBtn').addEventListener('click', async () => {
+        //向后端（端口5000）发送GET请求，访问/api/test接口，await等待后端回复
+      const res = await fetch('http://localhost:5000/api/test');
+        //把后端返回的数据转成 JS 能看懂的格式。await res.json() 是一个异步操作，等待数据转换完成后才继续执行下一行代码
+      const data = await res.json();
+      alert(data.message); // 弹出窗口，显示后端返回的消息
+    });
+  </script>
+</body>
+</html>
